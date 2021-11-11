@@ -28,6 +28,24 @@ var displayRepos = function (repos, searchTerm) {
     // append to container
     repoEl.appendChild(titleEl);
 
+    // create status element
+    var statusEl = document.createElement("span");
+    statusEl.classList = "flex-row align-center";
+
+    // check if current repo has issues or not
+    if (repos[i].open_issues_count > 0) {
+      statusEl.innerHTML =
+        "<i class='fas fa-times status-icon status-danger'></i>" +
+        repos[i].open_issues_count +
+        " issue(s)";
+    } else {
+      statusEl.innerHTML =
+        "<i class='fas fa-check-square status-icon status-success'></i>";
+    }
+
+    // append to contianer
+    repoEl.appendChild(statusEl);
+
     // append container to the DOM
     repoContainerEl.appendChild(repoEl);
   }
